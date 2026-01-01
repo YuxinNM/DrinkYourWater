@@ -67,7 +67,7 @@ document.addEventListener("visibilitychange", () => {
         const interval = setInterval(() => {
             const currentDate = new Date();
             const notification = new Notification("Remember to Drink Your Water!", {
-                body: `You have been away for ${Math.round((currentDate - leaveDate)/1000)} seconds.`,
+                body: `You have been away for ${Math.round((currentDate - leaveDate)/1000/60)} minutes.`,
                 tag: "Come Back",
                 icon: "waterDrop.png"
             });
