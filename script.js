@@ -1,10 +1,21 @@
 const startButton = document.getElementById('startButton');
+let timeout = 15*60*1000; // let user define (e.g., dropdown: 25 min, 30 min, 1 hr); default value:15min
+const intervalForm = document.getElementById('intervalForm');
+const intervalInput = document.getElementById('interval');
+const selectedIntervalDisplay = document.getElementById('selectedIntervalDisplay');
+
+intervalForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const selectedValue = intervalInput.value;    
+    selectedIntervalDisplay.textContent = selectedValue+" minutes";
+    timeout = parseInt(selectedValue) * 60 * 1000;
+});
 
 startButton.addEventListener('click', () => {
     Notification.requestPermission().then(perm => {
         if (perm === "granted") {
             const notification = new Notification("Start Reminder", {
-                body: "You clicked the start button!",
+                body: "We will remind you to drink water when you leave the page for every " + timeout/1000/60 + " minutes.",
                 icon: "waterDrop.png"
             })
             setTimeout(() => { notification.close(); }, 5000);
@@ -53,7 +64,6 @@ document.addEventListener("visibilitychange", () => {
 
     if (document.visibilityState === "hidden") {
         const leaveDate = new Date();
-        const timeout = 5000; // User-defined (e.g., dropdown: 25 min, 30 min, 1 hr); default value
         const interval = setInterval(() => {
             const currentDate = new Date();
             const notification = new Notification("Remember to Drink Your Water!", {

@@ -11,7 +11,22 @@
 
     <body>
         <h1>Drink Water Reminder</h1>
-        <hr>
+        <!-- <hr> -->
+         <br>
+        <form id="intervalForm">
+            <label for="Reminder Interval">Select an interval:</label>
+            <select name="Interval" id="interval">
+                <option value="15">15 minute</option>
+                <option value="20">20 minute</option>
+                <option value="30">30 minute</option>
+                <option value="60">1 hour</option>
+                <option value="90">1.5 hour</option>
+            </select>
+            <button id="submit">Set Interval</button>
+        </form>
+        <p>Selected interval: <span id="selectedIntervalDisplay">None</span></p>
+        <!-- <hr> -->
+         <br>
         <button id="startButton">Start Reminders</button> 
     </script>
     </body>
